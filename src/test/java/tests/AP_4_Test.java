@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
-import pages.HomePage;
+import pages.AuthenticationPage;
+import strategy.AdditionInMyWishlist;
+import strategy.Customers;
 
 @ExtendWith(Watcher.class)
 public class AP_4_Test {
@@ -15,16 +17,11 @@ public class AP_4_Test {
     @Test
     @Execution(ExecutionMode.CONCURRENT)
     void createMyWishlistAndAddProduct() {
-        HomePage homePage = new HomePage(true);
-        homePage.clickSignInButton()
-                .signIn()
-                .signInWishlist()
-                .createMyWishlist()
-                .addToWishlist()
-                .goToAccount()
-                .signInWishlist()
-                .contentWishlist()
-                .cleanWishlistTable()
-        ;
+        AuthenticationPage authenticationPage = new AuthenticationPage(true);
+        authenticationPage.signIn();
+
+        Customers customers = new Customers();
+        customers.setAddition(new AdditionInMyWishlist());
+        customers.executeAddition();
     }
 }

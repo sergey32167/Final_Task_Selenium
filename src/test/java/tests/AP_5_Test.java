@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
-import pages.HomePage;
+import pages.AuthenticationPage;
+import strategy.AdditionInCart;
+import strategy.Customers;
 
 @ExtendWith(Watcher.class)
 public class AP_5_Test {
@@ -15,18 +17,11 @@ public class AP_5_Test {
     @Test
     @Execution(ExecutionMode.CONCURRENT)
     void addProductsInCart() {
-        HomePage homePage = new HomePage(true);
-        homePage.clickSignInButton()
-                .signIn()
-                .jumpToHomePage()
-                .goToProductByName("Faded Short Sleeve T-shirts")
-                .addProduct()
-                .goToProductByName("Blouse")
-                .addProduct()
-                .goToProductByName("Printed Dress")
-                .addProduct()
-                .cartEntry()
-                .addCheck()
-        ;
+        AuthenticationPage authenticationPage = new AuthenticationPage(true);
+        authenticationPage.signIn();
+
+        Customers customers = new Customers();
+        customers.setAddition(new AdditionInCart());
+        customers.executeAddition();
     }
 }
