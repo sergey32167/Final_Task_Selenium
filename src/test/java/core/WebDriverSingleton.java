@@ -67,8 +67,13 @@ public class WebDriverSingleton {
         return null;
     }
 
+    public static void cleanCookies(){
+        getDriverInstance().manage().deleteAllCookies();
+        getDriverInstance().navigate().refresh();
+    }
+
     public static void quit() {
-        WebDriverSingleton.getDriverInstance().quit();
+        getDriverInstance().quit();
         driver.set(null);
     }
 }

@@ -1,5 +1,6 @@
 package tests;
 
+import baseEntities.BaseTest;
 import core.Watcher;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ import strategy.AdditionInCart;
 import strategy.Customers;
 
 @ExtendWith(Watcher.class)
-public class AP_5_Test {
+public class AP_5_Test extends BaseTest {
 
     @Description("checking the addition of goods to the cart and calculating the cost")
     @Test

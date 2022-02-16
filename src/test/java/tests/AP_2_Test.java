@@ -1,5 +1,6 @@
 package tests;
 
+import baseEntities.BaseTest;
 import core.Watcher;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 import pages.AuthenticationPage;
 
 @ExtendWith(Watcher.class)
-public class AP_2_Test {
+public class AP_2_Test extends BaseTest {
 
     @Description("verifying the login to an existing account")
     @Test

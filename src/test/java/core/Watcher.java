@@ -18,11 +18,6 @@ public class Watcher implements TestWatcher {
     }
 
     @Override
-    public void testSuccessful(ExtensionContext extensionContext) {
-        WebDriverSingleton.quit();
-    }
-
-    @Override
     public void testAborted(ExtensionContext extensionContext, Throwable cause) {
         WebDriverSingleton.quit();
     }

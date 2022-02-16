@@ -1,5 +1,6 @@
 package tests;
 
+import baseEntities.BaseTest;
 import core.Watcher;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 import pages.AuthenticationPage;
 
 @ExtendWith(Watcher.class)
-public class AP_1_Test {
+public class AP_1_Test extends BaseTest {
 
     @Description("verification of creating a new account")
     @Test
