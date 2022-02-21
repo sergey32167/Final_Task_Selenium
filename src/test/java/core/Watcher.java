@@ -3,10 +3,14 @@ package core;
 import io.qameta.allure.Attachment;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Watcher implements TestWatcher {
 
@@ -14,6 +18,7 @@ public class Watcher implements TestWatcher {
     public void testFailed(ExtensionContext extensionContext, Throwable cause) {
         Method method = extensionContext.getRequiredTestMethod();
         makeScreenshotOnFailure(method.getName());
+        informationForTestOnFailure();
         WebDriverSingleton.quit();
     }
 
@@ -25,5 +30,16 @@ public class Watcher implements TestWatcher {
     @Attachment(value = "{testName} - screenshot", type = "image/png")
     private byte[] makeScreenshotOnFailure(String testName) {
         return ((TakesScreenshot) WebDriverSingleton.getDriverInstance()).getScreenshotAs(OutputType.BYTES);
+    }
+
+    @Attachment
+    private String informationForTestOnFailure(){
+        Capabilities cap = ((RemoteWebDriver) WebDriverSingleton.getDriverInstance()).getCapabilities();
+        String browserName = cap.getBrowserName().toLowerCase();
+        String version = cap.getBrowserVersion().toLowerCase();
+        String platform = String.valueOf(cap.getPlatformName());
+        String date = new SimpleDateFormat("d MMM yyyy hh-mm-ss").format(new Date());
+        String str = "Browser" + " " + browserName + "\n" + "Version" + " " + version + "\n" + "Platform" + " " + platform + "\n" + "Date" + " " + date;
+        return str;
     }
 }

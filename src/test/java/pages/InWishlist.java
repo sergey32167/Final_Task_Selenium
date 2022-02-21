@@ -3,6 +3,7 @@ package pages;
 import baseEntities.BasePage;
 import core.ReadProperties;
 import io.qameta.allure.Step;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -25,7 +26,7 @@ public class InWishlist extends BasePage {
     private WebElement productInWishlist;
     @FindBy(xpath = "//a[@class = 'icon']")
     private WebElement deleteWishlistButton;
-
+    private final String endpoint = "index.php?fc=module&module=blockwishlist&controller=mywishlist";
 
     public InWishlist(boolean openPageByURL) {
         super(openPageByURL);
@@ -33,7 +34,7 @@ public class InWishlist extends BasePage {
 
     @Override
     protected void openPage() {
-        driver.get("http://automationpractice.com/index.php?fc=module&module=blockwishlist&controller=mywishlist");
+        driver.get(ReadProperties.getInstance().getURL() + endpoint);
     }
 
     @Override
@@ -58,19 +59,19 @@ public class InWishlist extends BasePage {
     }
 
     private void productInWishlist() {
-        wait.until(ExpectedConditions.visibilityOf(wishlistTable));
+        wait.until(ExpectedConditions.visibilityOf(productInWishlist));
     }
 
-    private String getWishlistName() {
-        return wishlistName.getText();
+    private void wishlistName() {
+        wait.until(ExpectedConditions.visibilityOf(wishlistName));
     }
 
     private void clickWishlistName() {
         wishlistName.click();
     }
 
-    private void setNameListInput() {
-        nameListInput.sendKeys(ReadProperties.getInstance().getWishlistName());
+    private void setNameListInput(String nameList) {
+        nameListInput.sendKeys(nameList);
     }
 
     private void clickDeleteWishlistButton() {
@@ -79,9 +80,9 @@ public class InWishlist extends BasePage {
 
     @Step("creating my wishlist")
     public InProduct createMyWishlist() {
-        setNameListInput();
+        setNameListInput(ReadProperties.getInstance().getWishlistName());
         clickSaveButton();
-        getWishlistName().equals("clothes");
+        wishlistName();
         clickProduct();
         return new InProduct(false);
     }

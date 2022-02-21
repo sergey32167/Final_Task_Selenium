@@ -1,6 +1,7 @@
 package pages;
 
 import baseEntities.BasePage;
+import core.ReadProperties;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -18,12 +19,11 @@ public class InCartPage extends BasePage {
     private WebElement totalPrice;
     @FindBy(xpath = "//td[@id='total_product']")
     private WebElement totalPriceProducts;
-    @FindBy(xpath = "//span[@id = 'summary_products_quantity']")
+    @FindBy(xpath = "//span[@id ='summary_products_quantity']")
     private WebElement counterProduct;
     @FindBy(css = ".cart_quantity_delete")
     private WebElement deleteProductButton;
-
-    //td[@class = 'cart_total']/span
+    private final String endpoint = "index.php?controller=order";
 
     public InCartPage(boolean openPageByURL) {
         super(openPageByURL);
@@ -31,7 +31,7 @@ public class InCartPage extends BasePage {
 
     @Override
     protected void openPage() {
-        driver.get("http://automationpractice.com/index.php?controller=order");
+        driver.get(ReadProperties.getInstance().getURL() + endpoint);
     }
 
     @Override
@@ -59,14 +59,14 @@ public class InCartPage extends BasePage {
         deleteProductButton.click();
     }
 
-    private void sumProductPrice() {
+    private double sumProductPrice() {
         double sum = 0;
         List<WebElement> listProduct = driver.findElements(By.xpath("//td[@class = 'cart_total']/span"));
         for (WebElement product : listProduct) {
             double www = Double.parseDouble(product.getText().substring(1));
             sum += www;
         }
-        Assertions.assertEquals(totalPriceProductsText(), sum);
+        return sum;
     }
 
     private void countProduct(int product) {
@@ -74,8 +74,8 @@ public class InCartPage extends BasePage {
     }
 
     @Step("check the data in the cart")
-    public InCartPage addCheck() {
-        sumProductPrice();
+    public InCartPage checksDataInCart() {
+        Assertions.assertEquals(totalPriceProductsText(),  sumProductPrice());
         countProduct(3);
         return this;
     }

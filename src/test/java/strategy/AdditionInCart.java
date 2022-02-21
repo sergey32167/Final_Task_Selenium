@@ -9,14 +9,14 @@ public class AdditionInCart implements Addition{
 
         MyAccountPage accountPage = new MyAccountPage(false);
                accountPage.jumpToHomePage()
-                .goToProductByName("Faded Short Sleeve T-shirts")
+                .goToItem1()
                 .addProduct()
-                .goToProductByName("Blouse")
+                .goToItem2()
                 .addProduct()
-                .goToProductByName("Printed Dress")
+                .goToItem3()
                 .addProduct()
                 .cartEntry()
-                .addCheck()
+                .checksDataInCart()
         ;
     }
 }

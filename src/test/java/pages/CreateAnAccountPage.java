@@ -3,17 +3,17 @@ package pages;
 import baseEntities.BasePage;
 import core.ReadProperties;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CreateAnAccountPage extends BasePage {
 
+    @FindBy(id = "id_gender1")
+    private WebElement title;
+    @FindBy(xpath = "//select[@name ='id_state']/option[text() = 'Hawaii']")
+    private WebElement stateName;
     @FindBy(xpath = "//input[@name ='customer_firstname']")
     private WebElement personalFirstNameInput;
     @FindBy(xpath = "//input[@name ='customer_lastname']")
@@ -42,6 +42,7 @@ public class CreateAnAccountPage extends BasePage {
     private WebElement submitButton;
     @FindBy(id = "uniform-id_state")
     private WebElement stateButton;
+    private final String endpoint = "index.php?controller=authentication&back=my-account#account-creation";
 
     public CreateAnAccountPage(boolean openPageByURL) {
         super(openPageByURL);
@@ -49,7 +50,7 @@ public class CreateAnAccountPage extends BasePage {
 
     @Override
     protected void openPage() {
-        driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation");
+        driver.get(ReadProperties.getInstance().getURL() + endpoint);
     }
 
     @Override
@@ -61,112 +62,86 @@ public class CreateAnAccountPage extends BasePage {
         }
     }
 
-    private void setPersonalFirstName() {
-        personalFirstNameInput.sendKeys(ReadProperties.getInstance().getFirstName());
+    private void setPersonalFirstName(String firstName) {
+        personalFirstNameInput.sendKeys(firstName);
     }
 
-    private void setPersonalLastName() {
-        personalLastNameInput.sendKeys(ReadProperties.getInstance().getLastName());
+    private void setPersonalLastName(String lastName) {
+        personalLastNameInput.sendKeys(lastName);
     }
 
-    private void setPassword() {
-        passwordInput.sendKeys(ReadProperties.getInstance().getPassword());
+    private void setPassword(String password) {
+        passwordInput.sendKeys(password);
     }
 
-    private void setEmail() {
-        passwordInput.sendKeys(ReadProperties.getInstance().getEmail());
+    private void setEmail(String email) {
+        emailInput.clear();
+        emailInput.sendKeys(email);
     }
 
-    private void clickEmail() {
-        emailInput.click();
+    private void setAddressFirstName(String addressFirstName) {
+        addressFirstNameInput.sendKeys(addressFirstName);
     }
 
-    private void setAddressFirstName() {
-        addressFirstNameInput.sendKeys(ReadProperties.getInstance().getFirstName());
+    private void setAddressLastName(String addressLastName) {
+        addressLastNameInput.sendKeys(addressLastName);
     }
 
-    private void setAddressLastName() {
-        addressLastNameInput.sendKeys(ReadProperties.getInstance().getLastName());
+    private void setCompany(String company) {
+        companyInput.sendKeys(company);
     }
 
-    private void setCompany() {
-        companyInput.sendKeys(ReadProperties.getInstance().getCompany());
+    private void setAddress(String address) {
+        addressInput.sendKeys(address);
     }
 
-    private void setAddress() {
-        addressInput.sendKeys(ReadProperties.getInstance().getAddress());
+    private void setCity(String city) {
+        cityInput.sendKeys(city);
     }
 
-    private void setCity() {
-        cityInput.sendKeys(ReadProperties.getInstance().getCity());
+    private void setPostcode(String postcode) {
+        postcodeInput.sendKeys(postcode);
     }
 
-    private void setPostcode() {
-        postcodeInput.sendKeys(ReadProperties.getInstance().getZip());
+    private void setPhone(String phone) {
+        phoneMobileInput.sendKeys(phone);
     }
 
-    private void setPhone() {
-        phoneMobileInput.sendKeys(ReadProperties.getInstance().getPhone());
-    }
-
-    private void clearAlias() {
+    private void setAlias(String alias) {
         aliasInput.clear();
+        aliasInput.sendKeys(alias);
     }
 
-    private void setAlias() {
-        aliasInput.sendKeys(ReadProperties.getInstance().getAlias());
+    private void clickTitle() {
+        title.click();
     }
 
-    private void submitButton() {
+    private void clickStateName() {
+        wait.until(ExpectedConditions.elementToBeClickable(stateButton)).click();
+        stateName.click();
+    }
+
+    private void clickSubmitButton() {
         submitButton.click();
     }
 
-    private void stateButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(stateButton)).click();
-    }
-
-    private void selectByIndexTitle(int index) {
-        List<WebElement> listTitle = driver.findElements(By.xpath("//input[@type ='radio']"));
-        for (WebElement element : listTitle) {
-            if (Integer.parseInt(element.getAttribute("value")) == index) {
-                element.click();
-            }
-        }
-    }
-
-    private void selectStateByName(String state) {
-        stateButton();
-        List<WebElement> listState = new ArrayList<>();
-        for (WebElement element : driver.findElements(By.xpath("//select[@name ='id_state']/option"))) {
-            listState.add(element);
-        }
-        for (WebElement element : listState) {
-            String textValue = element.getText();
-            if (textValue.equalsIgnoreCase(state)) {
-                element.click();
-                break;
-            }
-        }
-    }
-
     @Step("enter data to create an account")
-    public MyAccountPage dataFilling() {
-        selectByIndexTitle(1);
-        setPersonalFirstName();
-        setPersonalLastName();
-        setPassword();
-        clickEmail();
-        setAddressFirstName();
-        setAddressLastName();
-        setCompany();
-        setAddress();
-        setCity();
-        selectStateByName("Hawaii");
-        setPostcode();
-        setPhone();
-        clearAlias();
-        setAlias();
-        submitButton();
+    public MyAccountPage fillingInDataNewAccount() {
+        clickTitle();
+        setPersonalFirstName(ReadProperties.getInstance().getFirstName());
+        setPersonalLastName(ReadProperties.getInstance().getLastName());
+        setPassword(ReadProperties.getInstance().getPassword());
+        setEmail(ReadProperties.getInstance().getEmail());
+        setAddressFirstName(ReadProperties.getInstance().getFirstName());
+        setAddressLastName(ReadProperties.getInstance().getLastName());
+        setCompany(ReadProperties.getInstance().getCompany());
+        setAddress(ReadProperties.getInstance().getAddress());
+        setCity(ReadProperties.getInstance().getCity());
+        clickStateName();
+        setPostcode(ReadProperties.getInstance().getZip());
+        setPhone(ReadProperties.getInstance().getPhone());
+        setAlias(ReadProperties.getInstance().getAlias());
+        clickSubmitButton();
         return new MyAccountPage(false);
     }
 }

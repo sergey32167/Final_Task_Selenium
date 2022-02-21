@@ -1,6 +1,7 @@
 package pages;
 
 import baseEntities.BasePage;
+import core.ReadProperties;
 import io.qameta.allure.Step;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -19,8 +20,9 @@ public class InProduct extends BasePage {
     private WebElement addToWishlistButton;
     @FindBy(className = "account")
     private WebElement inAccountButton;
-    @FindBy(xpath = "//span[@title= 'Continue shopping']")
+    @FindBy(css = ".continue.btn.btn-default.button.exclusive-medium")
     private WebElement continueShopping;
+    private final String endpoint = "index.php?id_product=7&controller=product";
 
     public InProduct(boolean openPageByURL) {
         super(openPageByURL);
@@ -28,7 +30,7 @@ public class InProduct extends BasePage {
 
     @Override
     protected void openPage() {
-        driver.get("http://automationpractice.com/index.php?id_product=7&controller=product");
+        driver.get(ReadProperties.getInstance().getURL() + endpoint);
     }
 
     @Override

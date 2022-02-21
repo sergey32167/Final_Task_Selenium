@@ -11,7 +11,6 @@ public enum Browsers {
         this.name = name;
     }
 
-
     public static Browsers getBrowser(String name) {
         for (Browsers browsers : values()) {
             if (browsers.name.equalsIgnoreCase(name)) {

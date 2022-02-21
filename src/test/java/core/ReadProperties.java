@@ -68,4 +68,19 @@ public class ReadProperties {
     public String getWishlistName() {
         return properties.getProperty("wishlistname");
     }
+    public String getURL() {
+        return properties.getProperty("URL");
+    }
+    public String getGridHost() {
+        return properties.getProperty("gridhost");
+    }
+    public String getGridPort() {
+        return properties.getProperty("gridport");
+    }
+    public String getSauceName() {
+        return properties.getProperty("saucename");
+    }
+    public String getSauceKey() {
+        return properties.getProperty("saucekey");
+    }
 }

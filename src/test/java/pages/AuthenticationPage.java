@@ -21,6 +21,7 @@ public class AuthenticationPage extends BasePage {
     private WebElement signInButton;
     @FindBy(css = ".alert.alert-danger")
     private WebElement errorText;
+    private final String endpoint = "index.php?controller=authentication&back=my-account";
 
     public AuthenticationPage(boolean openPageByURL) {
         super(openPageByURL);
@@ -28,7 +29,7 @@ public class AuthenticationPage extends BasePage {
 
     @Override
     protected void openPage() {
-        driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+        driver.get(ReadProperties.getInstance().getURL() + endpoint);
     }
 
     @Override
@@ -48,12 +49,12 @@ public class AuthenticationPage extends BasePage {
         createAnAccountButton.click();
     }
 
-    private void setAlreadyEmailAddress(){
-        alreadyRegisteredEmailAddressInput.sendKeys(ReadProperties.getInstance().getEmail());
+    private void setAlreadyEmailAddress(String emailAddress){
+        alreadyRegisteredEmailAddressInput.sendKeys(emailAddress);
     }
 
-    private void setAlreadyPassword(){
-        alreadyRegisteredPasswordInput.sendKeys(ReadProperties.getInstance().getPassword());
+    private void setAlreadyPassword(String alreadyPassword){
+        alreadyRegisteredPasswordInput.sendKeys(alreadyPassword);
     }
 
     private void clickSignInButton(){
@@ -71,17 +72,10 @@ public class AuthenticationPage extends BasePage {
         return new CreateAnAccountPage(false);
     }
 
-    @Step("login to create an account")
-    public CreateAnAccountPage createAccount2(){
-        setCreateEmailAddress();
-        clickCreateButton();
-        return new CreateAnAccountPage(false);
-    }
-
     @Step("account login")
     public MyAccountPage signIn(){
-        setAlreadyEmailAddress();
-        setAlreadyPassword();
+        setAlreadyEmailAddress(ReadProperties.getInstance().getEmail());
+        setAlreadyPassword(ReadProperties.getInstance().getPassword());
         clickSignInButton();
         return new MyAccountPage(false);
     }

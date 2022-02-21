@@ -1,7 +1,9 @@
 package pages;
 
 import baseEntities.BasePage;
+import core.ReadProperties;
 import io.qameta.allure.Step;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,6 +20,7 @@ public class MyAccountPage extends BasePage {
     private WebElement homeButton;
     @FindBy(xpath = "//a[@title ='My wishlists']")
     private WebElement wishlistsButton;
+    private final String endpoint = "index.php?controller=my-account";
 
     public MyAccountPage(boolean openPageByURL) {
         super(openPageByURL);
@@ -25,7 +28,7 @@ public class MyAccountPage extends BasePage {
 
     @Override
     protected void openPage() {
-        driver.get("http://automationpractice.com/index.php?controller=my-account");
+        driver.get(ReadProperties.getInstance().getURL() + endpoint);
     }
 
     @Override
@@ -53,9 +56,14 @@ public class MyAccountPage extends BasePage {
         wishlistsButton.click();
     }
 
-    @Step("account creation verification")
-    public String getWelcomeText() {
+    private String getWelcomeText() {
         return welcomeText.getText();
+    }
+
+    @Step("account creation verification")
+    public MyAccountPage entryСheck() {
+        Assertions.assertEquals(getWelcomeText(), "Welcome to your account. Here you can manage all of your personal information and orders.");
+        return this;
     }
 
     public InWishlist signInWishlist() {
