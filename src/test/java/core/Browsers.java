@@ -2,8 +2,7 @@ package core;
 
 public enum Browsers {
     CHROME("chrome"),
-    FIREFOX("firefox"),
-    CUSTOMIZABLE("custom");
+    FIREFOX("firefox");
 
     private final String name;
 

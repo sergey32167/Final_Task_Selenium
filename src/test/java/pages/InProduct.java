@@ -10,9 +10,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class InProduct extends BasePage {
 
-    @FindBy(xpath = "//button[@class= 'exclusive']")
+    @FindBy(xpath = "//button[@class='exclusive']")
     private WebElement addToCartButton;
-    @FindBy(css = ".icon-home")
+    @FindBy(className = "icon-home")
     private WebElement homeButton;
     @FindBy(xpath = "//a[@title = 'Close']")
     private WebElement closeButton;
@@ -23,6 +23,9 @@ public class InProduct extends BasePage {
     @FindBy(css = ".continue.btn.btn-default.button.exclusive-medium")
     private WebElement continueShopping;
     private final String endpoint = "index.php?id_product=7&controller=product";
+
+    public InProduct() {
+    }
 
     public InProduct(boolean openPageByURL) {
         super(openPageByURL);
@@ -42,44 +45,44 @@ public class InProduct extends BasePage {
         }
     }
 
-    private void clickContinueShoppingButton(){
+    private void clickContinueShoppingButton() {
         wait.until(ExpectedConditions.elementToBeClickable(continueShopping)).click();
     }
 
-    private void clickHomeButton(){
+    private void clickHomeButton() {
         wait.until(ExpectedConditions.elementToBeClickable(homeButton)).click();
     }
 
-    private void clickAddToCartButton(){
+    private void clickAddToCartButton() {
         addToCartButton.click();
     }
 
-    private void clickAddToWishlistButton(){
+    private void clickAddToWishlistButton() {
         addToWishlistButton.click();
     }
 
-    private void clickInAccountButton(){
+    private void clickInAccountButton() {
         wait.until(ExpectedConditions.elementToBeClickable(inAccountButton)).click();
     }
 
-    private void clickCloseButton(){
+    private void clickCloseButton() {
         wait.until(ExpectedConditions.elementToBeClickable(closeButton)).click();
     }
 
     @Step("adding product to wishlist")
-    public InProduct addToWishlist(){
+    public InProduct addToWishlist() {
         clickAddToWishlistButton();
         clickCloseButton();
         return this;
     }
 
-    public MyAccountPage goToAccount(){
+    public MyAccountPage goToAccount() {
         clickInAccountButton();
         return new MyAccountPage(false);
     }
 
     @Step("adding a product to the cart")
-    public HomePage addProduct(){
+    public HomePage addProduct() {
         clickAddToCartButton();
         clickContinueShoppingButton();
         clickHomeButton();

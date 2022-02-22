@@ -24,9 +24,12 @@ public class InWishlist extends BasePage {
     private WebElement product;
     @FindBy(css = ".row.wlp_bought_list")
     private WebElement productInWishlist;
-    @FindBy(xpath = "//a[@class = 'icon']")
+    @FindBy(className = "icon")
     private WebElement deleteWishlistButton;
     private final String endpoint = "index.php?fc=module&module=blockwishlist&controller=mywishlist";
+
+    public InWishlist() {
+    }
 
     public InWishlist(boolean openPageByURL) {
         super(openPageByURL);
@@ -79,8 +82,8 @@ public class InWishlist extends BasePage {
     }
 
     @Step("creating my wishlist")
-    public InProduct createMyWishlist() {
-        setNameListInput(ReadProperties.getInstance().getWishlistName());
+    public InProduct createMyWishlist(String nameList) {
+        setNameListInput(nameList);
         clickSaveButton();
         wishlistName();
         clickProduct();

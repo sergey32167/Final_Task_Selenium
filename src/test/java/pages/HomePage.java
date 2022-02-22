@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
-    @FindBy(css = ".login")
+    @FindBy(className = "login")
     private WebElement signInButton;
     @FindBy(xpath = "//div[@class ='shopping_cart']/a")
     private WebElement cartButton;
@@ -19,6 +19,9 @@ public class HomePage extends BasePage {
     private WebElement product2;
     @FindBy(xpath = "//h5[@itemprop= 'name']/a[@title ='Printed Dress']")
     private WebElement product3;
+
+    public HomePage() {
+    }
 
     public HomePage(boolean openPageByURL) {
         super(openPageByURL);
@@ -60,29 +63,29 @@ public class HomePage extends BasePage {
 
     public AuthenticationPage clickSignInButton() {
         clickSgnIn();
-        return new AuthenticationPage(false);
+        return new AuthenticationPage();
     }
 
     public InCartPage cartEntry() {
         clickCartButton();
-        return new InCartPage(false);
+        return new InCartPage();
     }
 
     @Step("one item selected")
     public InProduct goToItem1() {
-       clickItem1();
-        return new InProduct(false);
+        clickItem1();
+        return new InProduct();
     }
 
     @Step("one item selected")
     public InProduct goToItem2() {
         clickItem2();
-        return new InProduct(false);
+        return new InProduct();
     }
 
     @Step("one item selected")
     public InProduct goToItem3() {
         clickItem3();
-        return new InProduct(false);
+        return new InProduct();
     }
 }

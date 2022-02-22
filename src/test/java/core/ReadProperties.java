@@ -26,6 +26,9 @@ public class ReadProperties {
     public String getUsername(){
         return properties.getProperty("username");
     }
+    public String getDriverName(){
+        return properties.getProperty("drivername");
+    }
     public String getPassword(){
         return properties.getProperty("password");
     }

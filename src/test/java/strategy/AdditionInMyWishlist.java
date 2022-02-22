@@ -1,5 +1,6 @@
 package strategy;
 
+import core.ReadProperties;
 import pages.MyAccountPage;
 
 public class AdditionInMyWishlist implements Addition {
@@ -8,7 +9,7 @@ public class AdditionInMyWishlist implements Addition {
     public void addItem() {
         MyAccountPage accountPage = new MyAccountPage(false);
         accountPage.signInWishlist()
-                .createMyWishlist()
+                .createMyWishlist(ReadProperties.getInstance().getWishlistName())
                 .addToWishlist()
                 .goToAccount()
                 .signInWishlist()

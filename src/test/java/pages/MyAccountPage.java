@@ -22,6 +22,8 @@ public class MyAccountPage extends BasePage {
     private WebElement wishlistsButton;
     private final String endpoint = "index.php?controller=my-account";
 
+    public MyAccountPage(){}
+
     public MyAccountPage(boolean openPageByURL) {
         super(openPageByURL);
     }

@@ -44,6 +44,9 @@ public class CreateAnAccountPage extends BasePage {
     private WebElement stateButton;
     private final String endpoint = "index.php?controller=authentication&back=my-account#account-creation";
 
+    public CreateAnAccountPage() {
+    }
+
     public CreateAnAccountPage(boolean openPageByURL) {
         super(openPageByURL);
     }
@@ -126,22 +129,23 @@ public class CreateAnAccountPage extends BasePage {
     }
 
     @Step("enter data to create an account")
-    public MyAccountPage fillingInDataNewAccount() {
+    public MyAccountPage fillingInDataNewAccount(String firstName, String lastName, String email, String password, String addressFirstName, String addressLastName,
+                                                 String company, String address, String city, String postcode, String phone, String alias) {
         clickTitle();
-        setPersonalFirstName(ReadProperties.getInstance().getFirstName());
-        setPersonalLastName(ReadProperties.getInstance().getLastName());
-        setPassword(ReadProperties.getInstance().getPassword());
-        setEmail(ReadProperties.getInstance().getEmail());
-        setAddressFirstName(ReadProperties.getInstance().getFirstName());
-        setAddressLastName(ReadProperties.getInstance().getLastName());
-        setCompany(ReadProperties.getInstance().getCompany());
-        setAddress(ReadProperties.getInstance().getAddress());
-        setCity(ReadProperties.getInstance().getCity());
+        setPersonalFirstName(firstName);
+        setPersonalLastName(lastName);
+        setEmail(email);
+        setPassword(password);
+        setAddressFirstName(addressFirstName);
+        setAddressLastName(addressLastName);
+        setCompany(company);
+        setAddress(address);
+        setCity(city);
         clickStateName();
-        setPostcode(ReadProperties.getInstance().getZip());
-        setPhone(ReadProperties.getInstance().getPhone());
-        setAlias(ReadProperties.getInstance().getAlias());
+        setPostcode(postcode);
+        setPhone(phone);
+        setAlias(alias);
         clickSubmitButton();
-        return new MyAccountPage(false);
+        return new MyAccountPage();
     }
 }

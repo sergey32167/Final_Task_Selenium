@@ -23,6 +23,8 @@ public class AuthenticationPage extends BasePage {
     private WebElement errorText;
     private final String endpoint = "index.php?controller=authentication&back=my-account";
 
+    public AuthenticationPage(){}
+
     public AuthenticationPage(boolean openPageByURL) {
         super(openPageByURL);
     }
@@ -69,14 +71,14 @@ public class AuthenticationPage extends BasePage {
     public CreateAnAccountPage createAccount(){
         setCreateEmailAddress();
         clickCreateButton();
-        return new CreateAnAccountPage(false);
+        return new CreateAnAccountPage();
     }
 
     @Step("account login")
-    public MyAccountPage signIn(){
-        setAlreadyEmailAddress(ReadProperties.getInstance().getEmail());
-        setAlreadyPassword(ReadProperties.getInstance().getPassword());
+    public MyAccountPage signIn(String emailAddress, String alreadyPassword){
+        setAlreadyEmailAddress(emailAddress);
+        setAlreadyPassword(alreadyPassword);
         clickSignInButton();
-        return new MyAccountPage(false);
+        return new MyAccountPage();
     }
 }

@@ -15,11 +15,11 @@ public class DriverPopulator {
         driverMap.put(DriverName.SAUCE, new SauceLabsDriver());
     }
 
-    public WebDriver driverPopulatorChrome(DriverName name){
-        return  driverMap.get(name).initChromeDriver();
+    public WebDriver driverPopulatorChrome(DriverName name) {
+        return driverMap.get(name).initChromeDriver();
     }
 
-    public WebDriver driverPopulatorFF(DriverName name){
-        return  driverMap.get(name).initFFDriver();
+    public WebDriver driverPopulatorFF(DriverName name) {
+        return driverMap.get(name).initFFDriver();
     }
 }

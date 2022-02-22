@@ -24,12 +24,13 @@ public class WebDriverSingleton {
             return threadLocal.get();
         }
         String browserName = ReadProperties.getInstance().getBrowserName();
+        String driverName = ReadProperties.getInstance().getDriverName();
         switch (Browsers.getBrowser(browserName)) {
             case CHROME:
-                driver = new DriverPopulator().driverPopulatorChrome(DriverName.LOCAL);
+                driver = new DriverPopulator().driverPopulatorChrome(DriverName.getDriverName(driverName));
                 break;
             case FIREFOX:
-                driver = new DriverPopulator().driverPopulatorFF(DriverName.LOCAL);
+                driver = new DriverPopulator().driverPopulatorFF(DriverName.getDriverName(driverName));
                 break;
 
             default:

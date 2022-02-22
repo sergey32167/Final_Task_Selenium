@@ -17,13 +17,16 @@ public class InCartPage extends BasePage {
     private WebElement cartTitle;
     @FindBy(id = "total_price")
     private WebElement totalPrice;
-    @FindBy(xpath = "//td[@id='total_product']")
+    @FindBy(id = "total_product")
     private WebElement totalPriceProducts;
-    @FindBy(xpath = "//span[@id ='summary_products_quantity']")
+    @FindBy(id = "summary_products_quantity")
     private WebElement counterProduct;
-    @FindBy(css = ".cart_quantity_delete")
+    @FindBy(className = "cart_quantity_delete")
     private WebElement deleteProductButton;
     private final String endpoint = "index.php?controller=order";
+
+    public InCartPage() {
+    }
 
     public InCartPage(boolean openPageByURL) {
         super(openPageByURL);
