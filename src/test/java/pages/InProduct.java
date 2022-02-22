@@ -78,7 +78,7 @@ public class InProduct extends BasePage {
 
     public MyAccountPage goToAccount() {
         clickInAccountButton();
-        return new MyAccountPage(false);
+        return new MyAccountPage();
     }
 
     @Step("adding a product to the cart")
@@ -86,6 +86,6 @@ public class InProduct extends BasePage {
         clickAddToCartButton();
         clickContinueShoppingButton();
         clickHomeButton();
-        return new HomePage(false);
+        return new HomePage();
     }
 }

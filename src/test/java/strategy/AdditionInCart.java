@@ -16,7 +16,6 @@ public class AdditionInCart implements Addition{
                 .goToItem3()
                 .addProduct()
                 .cartEntry()
-                .checksDataInCart()
         ;
     }
 }

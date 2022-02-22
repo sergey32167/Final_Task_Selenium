@@ -14,7 +14,7 @@ public class AP_3_Test extends BaseTest {
     @Test
     void createRandomWishlistAndAddProduct() {
         AuthenticationPage authenticationPage = new AuthenticationPage(true);
-        authenticationPage.signIn(ReadProperties.getInstance().getEmail(),ReadProperties.getInstance().getPassword());
+        authenticationPage.signIn(ReadProperties.getInstance().getEmail(), ReadProperties.getInstance().getPassword());
 
         Customers customers = new Customers();
         customers.setAddition(new AdditionInRandomWishlist());

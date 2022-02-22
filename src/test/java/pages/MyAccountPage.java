@@ -58,23 +58,17 @@ public class MyAccountPage extends BasePage {
         wishlistsButton.click();
     }
 
-    private String getWelcomeText() {
+    public String getWelcomeText() {
         return welcomeText.getText();
-    }
-
-    @Step("account creation verification")
-    public MyAccountPage entryСheck() {
-        Assertions.assertEquals(getWelcomeText(), "Welcome to your account. Here you can manage all of your personal information and orders.");
-        return this;
     }
 
     public InWishlist signInWishlist() {
         clickWishlistsButton();
-        return new InWishlist(false);
+        return new InWishlist();
     }
 
     public HomePage jumpToHomePage() {
         clickHomeButton();
-        return new HomePage(false);
+        return new HomePage();
     }
 }

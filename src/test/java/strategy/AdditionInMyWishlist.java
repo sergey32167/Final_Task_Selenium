@@ -13,7 +13,7 @@ public class AdditionInMyWishlist implements Addition {
                 .addToWishlist()
                 .goToAccount()
                 .signInWishlist()
-                .contentWishlist()
+                .contentRandomWishlist()
                 .cleanWishlistTable();
     }
 }

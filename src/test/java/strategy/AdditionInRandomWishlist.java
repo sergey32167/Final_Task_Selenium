@@ -12,7 +12,7 @@ public class AdditionInRandomWishlist implements Addition {
                 .addToWishlist()
                 .goToAccount()
                 .signInWishlist()
-                .contentWishlist()
+                .contentMyWishlist()
                 .cleanWishlistTable()
         ;
     }

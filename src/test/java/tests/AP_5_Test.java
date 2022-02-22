@@ -3,8 +3,10 @@ package tests;
 import baseEntities.BaseTest;
 import core.ReadProperties;
 import io.qameta.allure.Description;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pages.AuthenticationPage;
+import pages.InCartPage;
 import strategy.AdditionInCart;
 import strategy.Customers;
 
@@ -19,5 +21,9 @@ public class AP_5_Test extends BaseTest {
         Customers customers = new Customers();
         customers.setAddition(new AdditionInCart());
         customers.executeAddition();
+
+        InCartPage inCartPage = new InCartPage();
+        Assertions.assertEquals(inCartPage.totalPriceProductsText(),  inCartPage.sumProductPrice());
+        Assertions.assertEquals(inCartPage.counterProductText(),  "3 Products");
     }
 }

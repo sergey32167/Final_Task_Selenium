@@ -50,11 +50,11 @@ public class InCartPage extends BasePage {
         return Double.parseDouble(totalPrice.getText());
     }
 
-    private double totalPriceProductsText() {
+    public double totalPriceProductsText() {
         return Double.parseDouble(totalPriceProducts.getText().substring(1));
     }
 
-    private String counterProductText() {
+    public String counterProductText() {
         return counterProduct.getText();
     }
 
@@ -62,7 +62,7 @@ public class InCartPage extends BasePage {
         deleteProductButton.click();
     }
 
-    private double sumProductPrice() {
+    public double sumProductPrice() {
         double sum = 0;
         List<WebElement> listProduct = driver.findElements(By.xpath("//td[@class = 'cart_total']/span"));
         for (WebElement product : listProduct) {
@@ -70,16 +70,5 @@ public class InCartPage extends BasePage {
             sum += www;
         }
         return sum;
-    }
-
-    private void countProduct(int product) {
-        Assertions.assertEquals(counterProductText(), product + " " + "Products");
-    }
-
-    @Step("check the data in the cart")
-    public InCartPage checksDataInCart() {
-        Assertions.assertEquals(totalPriceProductsText(),  sumProductPrice());
-        countProduct(3);
-        return this;
     }
 }

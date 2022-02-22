@@ -73,6 +73,10 @@ public class InWishlist extends BasePage {
         wishlistName.click();
     }
 
+    private String getWishlistNameText() {
+        return wishlistName.getText();
+    }
+
     private void setNameListInput(String nameList) {
         nameListInput.sendKeys(nameList);
     }
@@ -87,18 +91,27 @@ public class InWishlist extends BasePage {
         clickSaveButton();
         wishlistName();
         clickProduct();
-        return new InProduct(false);
+        return new InProduct();
     }
 
     @Step("creating a random wishlist")
     public InProduct createRandomWishlist() {
         wishlistTable();
         clickProduct();
-        return new InProduct(false);
+        return new InProduct();
     }
 
     @Step("checking the availability of the corresponding wishlist")
-    public InWishlist contentWishlist() {
+    public InWishlist contentMyWishlist() {
+        getWishlistNameText().equals("clothes");
+        clickWishlistName();
+        productInWishlist();
+        return this;
+    }
+
+    @Step("checking the availability of the corresponding wishlist")
+    public InWishlist contentRandomWishlist() {
+        getWishlistNameText().trim().equals("My wishlist");
         clickWishlistName();
         productInWishlist();
         return this;
