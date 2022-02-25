@@ -1,7 +1,6 @@
 package tests;
 
 import baseEntities.BaseTest;
-import core.ReadProperties;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,8 +14,8 @@ public class AP_1_Test extends BaseTest {
      void createNewAccount() {
         AuthenticationPage authenticationPage = new AuthenticationPage(true);
         authenticationPage.createAccount()
-                .fillingInDataNewAccount(ReadProperties.getInstance().getFirstName(), ReadProperties.getInstance().getLastName(), ReadProperties.getInstance().getEmail(), ReadProperties.getInstance().getPassword(),ReadProperties.getInstance().getFirstName(), ReadProperties.getInstance().getLastName(),ReadProperties.getInstance().getCompany(), ReadProperties.getInstance().getAddress(),ReadProperties.getInstance().getCity(), ReadProperties.getInstance().getZip(), ReadProperties.getInstance().getPhone(),ReadProperties.getInstance().getAlias());
+                .fillingInDataNewAccount(properties.getFirstName(), properties.getLastName(), properties.getEmail(), properties.getPassword(), properties.getFirstName(), properties.getLastName(), properties.getCompany(), properties.getAddress(), properties.getCity(), properties.getZip(), properties.getPhone(), properties.getAlias());
 
-        Assertions.assertEquals(new MyAccountPage().getWelcomeText(), "Welcome to your account. Here you can manage all of your personal information and orders.");
+        Assertions.assertEquals(new MyAccountPage().getNameAccountText(), properties.getFirstName() + " " + properties.getLastName());
     }
 }

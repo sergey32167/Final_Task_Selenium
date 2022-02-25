@@ -19,8 +19,11 @@ public class HomePage extends BasePage {
     private WebElement product2;
     @FindBy(xpath = "//h5[@itemprop= 'name']/a[@title ='Printed Dress']")
     private WebElement product3;
+    @FindBy(xpath = "//h5[@itemprop= 'name']/a")
+    private WebElement someProduct;
 
     public HomePage() {
+        super(false);
     }
 
     public HomePage(boolean openPageByURL) {
@@ -57,6 +60,10 @@ public class HomePage extends BasePage {
         product3.click();
     }
 
+    private void clickItem() {
+        someProduct.click();
+    }
+
     private void clickCartButton() {
         cartButton.click();
     }
@@ -86,6 +93,12 @@ public class HomePage extends BasePage {
     @Step("one item selected")
     public InProduct goToItem3() {
         clickItem3();
+        return new InProduct();
+    }
+
+    @Step("one item selected")
+    public InProduct goToItem() {
+        clickItem();
         return new InProduct();
     }
 }

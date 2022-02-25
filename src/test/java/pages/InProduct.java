@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class InProduct extends BasePage {
 
-    @FindBy(xpath = "//button[@class='exclusive']")
+    @FindBy(css = "button.exclusive")
     private WebElement addToCartButton;
     @FindBy(className = "icon-home")
     private WebElement homeButton;
@@ -22,9 +22,9 @@ public class InProduct extends BasePage {
     private WebElement inAccountButton;
     @FindBy(css = ".continue.btn.btn-default.button.exclusive-medium")
     private WebElement continueShopping;
-    private final String endpoint = "index.php?id_product=7&controller=product";
 
     public InProduct() {
+        super(false);
     }
 
     public InProduct(boolean openPageByURL) {
@@ -33,6 +33,7 @@ public class InProduct extends BasePage {
 
     @Override
     protected void openPage() {
+        String endpoint = "index.php?id_product=7&controller=product";
         driver.get(ReadProperties.getInstance().getURL() + endpoint);
     }
 

@@ -21,9 +21,10 @@ public class AuthenticationPage extends BasePage {
     private WebElement signInButton;
     @FindBy(css = ".alert.alert-danger")
     private WebElement errorText;
-    private final String endpoint = "index.php?controller=authentication&back=my-account";
 
-    public AuthenticationPage(){}
+    public AuthenticationPage(){
+        super(false);
+    }
 
     public AuthenticationPage(boolean openPageByURL) {
         super(openPageByURL);
@@ -31,6 +32,7 @@ public class AuthenticationPage extends BasePage {
 
     @Override
     protected void openPage() {
+        String endpoint = "index.php?controller=authentication&back=my-account";
         driver.get(ReadProperties.getInstance().getURL() + endpoint);
     }
 

@@ -16,15 +16,6 @@ public abstract class BasePage {
 
     protected abstract boolean isPageOpened();
 
-    public BasePage() {
-        this.driver = WebDriverSingleton.getDriverInstance();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(ReadProperties.getInstance().getTimeOut()));
-
-        PageFactory.initElements(this.driver, this);
-
-        waitForOpen();
-    }
-
     public BasePage(boolean openPageByURL) {
         this.driver = WebDriverSingleton.getDriverInstance();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(ReadProperties.getInstance().getTimeOut()));

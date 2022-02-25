@@ -23,9 +23,9 @@ public class InCartPage extends BasePage {
     private WebElement counterProduct;
     @FindBy(className = "cart_quantity_delete")
     private WebElement deleteProductButton;
-    private final String endpoint = "index.php?controller=order";
 
     public InCartPage() {
+        super(false);
     }
 
     public InCartPage(boolean openPageByURL) {
@@ -34,6 +34,7 @@ public class InCartPage extends BasePage {
 
     @Override
     protected void openPage() {
+        String endpoint = "index.php?controller=order";
         driver.get(ReadProperties.getInstance().getURL() + endpoint);
     }
 
@@ -55,7 +56,7 @@ public class InCartPage extends BasePage {
     }
 
     public String counterProductText() {
-        return counterProduct.getText();
+        return counterProduct.getText().substring(0,1);
     }
 
     private void clickDeleteProductButton() {

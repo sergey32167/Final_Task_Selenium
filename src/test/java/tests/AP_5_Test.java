@@ -1,7 +1,6 @@
 package tests;
 
 import baseEntities.BaseTest;
-import core.ReadProperties;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,7 +15,7 @@ public class AP_5_Test extends BaseTest {
     @Test
     void addProductsInCart() {
         AuthenticationPage authenticationPage = new AuthenticationPage(true);
-        authenticationPage.signIn(ReadProperties.getInstance().getEmail(),ReadProperties.getInstance().getPassword());
+        authenticationPage.signIn(properties.getEmail(), properties.getPassword());
 
         Customers customers = new Customers();
         customers.setAddition(new AdditionInCart());
@@ -24,6 +23,6 @@ public class AP_5_Test extends BaseTest {
 
         InCartPage inCartPage = new InCartPage();
         Assertions.assertEquals(inCartPage.totalPriceProductsText(),  inCartPage.sumProductPrice());
-        Assertions.assertEquals(inCartPage.counterProductText(),  "3 Products");
+        Assertions.assertEquals(inCartPage.counterProductText(),  "3");
     }
 }

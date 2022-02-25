@@ -42,9 +42,9 @@ public class CreateAnAccountPage extends BasePage {
     private WebElement submitButton;
     @FindBy(id = "uniform-id_state")
     private WebElement stateButton;
-    private final String endpoint = "index.php?controller=authentication&back=my-account#account-creation";
 
     public CreateAnAccountPage() {
+        super(false);
     }
 
     public CreateAnAccountPage(boolean openPageByURL) {
@@ -53,6 +53,7 @@ public class CreateAnAccountPage extends BasePage {
 
     @Override
     protected void openPage() {
+        String endpoint = "index.php?controller=authentication&back=my-account#account-creation";
         driver.get(ReadProperties.getInstance().getURL() + endpoint);
     }
 

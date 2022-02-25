@@ -26,9 +26,9 @@ public class InWishlist extends BasePage {
     private WebElement productInWishlist;
     @FindBy(className = "icon")
     private WebElement deleteWishlistButton;
-    private final String endpoint = "index.php?fc=module&module=blockwishlist&controller=mywishlist";
 
     public InWishlist() {
+        super(false);
     }
 
     public InWishlist(boolean openPageByURL) {
@@ -37,6 +37,7 @@ public class InWishlist extends BasePage {
 
     @Override
     protected void openPage() {
+        String endpoint = "index.php?fc=module&module=blockwishlist&controller=mywishlist";
         driver.get(ReadProperties.getInstance().getURL() + endpoint);
     }
 

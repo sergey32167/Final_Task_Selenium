@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 
 public class MyAccountPage extends BasePage {
 
+    @FindBy(xpath = "//a[@class = 'account']/span")
+    private WebElement nameAccount;
     @FindBy(className = "info-account")
     private WebElement welcomeText;
     @FindBy(className = "logout")
@@ -20,9 +22,10 @@ public class MyAccountPage extends BasePage {
     private WebElement homeButton;
     @FindBy(xpath = "//a[@title ='My wishlists']")
     private WebElement wishlistsButton;
-    private final String endpoint = "index.php?controller=my-account";
 
-    public MyAccountPage(){}
+    public MyAccountPage(){
+        super(false);
+    }
 
     public MyAccountPage(boolean openPageByURL) {
         super(openPageByURL);
@@ -30,6 +33,7 @@ public class MyAccountPage extends BasePage {
 
     @Override
     protected void openPage() {
+        String endpoint = "index.php?controller=my-account";
         driver.get(ReadProperties.getInstance().getURL() + endpoint);
     }
 
@@ -60,6 +64,10 @@ public class MyAccountPage extends BasePage {
 
     public String getWelcomeText() {
         return welcomeText.getText();
+    }
+
+    public String getNameAccountText() {
+        return nameAccount.getText();
     }
 
     public InWishlist signInWishlist() {
