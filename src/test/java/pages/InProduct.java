@@ -1,7 +1,6 @@
 package pages;
 
 import baseEntities.BasePage;
-import core.ReadProperties;
 import io.qameta.allure.Step;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -27,14 +26,8 @@ public class InProduct extends BasePage {
         super(false);
     }
 
-    public InProduct(boolean openPageByURL) {
-        super(openPageByURL);
-    }
-
     @Override
     protected void openPage() {
-        String endpoint = "index.php?id_product=7&controller=product";
-        driver.get(ReadProperties.getInstance().getURL() + endpoint);
     }
 
     @Override

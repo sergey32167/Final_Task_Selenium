@@ -9,11 +9,11 @@ public class AdditionInCart implements Addition{
 
         MyAccountPage accountPage = new MyAccountPage(false);
                accountPage.jumpToHomePage()
-                .goToItem()
+                .goToItem1()
                 .addProduct()
-                .goToItem()
+                .goToItem2()
                 .addProduct()
-                .goToItem()
+                .goToItem3()
                 .addProduct()
                 .cartEntry()
         ;

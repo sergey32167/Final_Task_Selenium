@@ -2,8 +2,6 @@ package pages;
 
 import baseEntities.BasePage;
 import core.ReadProperties;
-import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

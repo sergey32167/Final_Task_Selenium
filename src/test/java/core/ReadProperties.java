@@ -86,4 +86,16 @@ public class ReadProperties {
     public String getSauceKey() {
         return properties.getProperty("saucekey");
     }
+    public String getItem1() {
+        return properties.getProperty("item1");
+    }
+    public String getItem2() {
+        return properties.getProperty("item2");
+    }
+    public String getItem3() {
+        return properties.getProperty("item3");
+    }
+    public String getState() {
+        return properties.getProperty("state");
+    }
 }

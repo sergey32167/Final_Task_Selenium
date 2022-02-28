@@ -8,12 +8,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.List;
+
 public class CreateAnAccountPage extends BasePage {
 
     @FindBy(id = "id_gender1")
     private WebElement title;
-    @FindBy(xpath = "//select[@name ='id_state']/option[text() = 'Hawaii']")
-    private WebElement stateName;
+    @FindBy(xpath = "//select[@name ='id_state']/option")
+    public List<WebElement> stateName;
     @FindBy(xpath = "//input[@name ='customer_firstname']")
     private WebElement personalFirstNameInput;
     @FindBy(xpath = "//input[@name ='customer_lastname']")
@@ -122,7 +124,12 @@ public class CreateAnAccountPage extends BasePage {
 
     private void clickStateName() {
         wait.until(ExpectedConditions.elementToBeClickable(stateButton)).click();
-        stateName.click();
+        for (WebElement element : stateName) {
+            if (element.getText().trim().equals(ReadProperties.getInstance().getState())) {
+                element.click();
+            }
+            break;
+        }
     }
 
     private void clickSubmitButton() {

@@ -7,20 +7,16 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class HomePage extends BasePage {
 
     @FindBy(className = "login")
     private WebElement signInButton;
     @FindBy(xpath = "//div[@class ='shopping_cart']/a")
     private WebElement cartButton;
-    @FindBy(xpath = "//h5[@itemprop= 'name']/a[@title ='Faded Short Sleeve T-shirts']")
-    private WebElement product1;
-    @FindBy(xpath = "//h5[@itemprop= 'name']/a[@title ='Blouse']")
-    private WebElement product2;
-    @FindBy(xpath = "//h5[@itemprop= 'name']/a[@title ='Printed Dress']")
-    private WebElement product3;
     @FindBy(xpath = "//h5[@itemprop= 'name']/a")
-    private WebElement someProduct;
+    public List<WebElement> someProduct;
 
     public HomePage() {
         super(false);
@@ -38,7 +34,7 @@ public class HomePage extends BasePage {
     @Override
     protected boolean isPageOpened() {
         try {
-            return product1.isDisplayed();
+            return cartButton.isDisplayed();
         } catch (NoSuchElementException ex) {
             return false;
         }
@@ -49,19 +45,30 @@ public class HomePage extends BasePage {
     }
 
     private void clickItem1() {
-        product1.click();
+        for (WebElement element : someProduct){
+            if (element.getText().trim().equals(ReadProperties.getInstance().getItem1())){
+                element.click();
+            }
+            break;
+        }
     }
 
     private void clickItem2() {
-        product2.click();
+        for (WebElement element : someProduct){
+            if (element.getText().trim().equals(ReadProperties.getInstance().getItem2())){
+                element.click();
+            }
+            break;
+        }
     }
 
     private void clickItem3() {
-        product3.click();
-    }
-
-    private void clickItem() {
-        someProduct.click();
+        for (WebElement element : someProduct){
+            if (element.getText().trim().equals(ReadProperties.getInstance().getItem3())){
+                element.click();
+            }
+            break;
+        }
     }
 
     private void clickCartButton() {
@@ -93,12 +100,6 @@ public class HomePage extends BasePage {
     @Step("one item selected")
     public InProduct goToItem3() {
         clickItem3();
-        return new InProduct();
-    }
-
-    @Step("one item selected")
-    public InProduct goToItem() {
-        clickItem();
         return new InProduct();
     }
 }

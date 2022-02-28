@@ -10,7 +10,7 @@ public class DriverPopulator {
 
     public DriverPopulator() {
         this.driverMap = new HashMap<>();
-        driverMap.put(DriverName.LOCAL, new localDriver());
+        driverMap.put(DriverName.LOCAL, new LocalDriver());
         driverMap.put(DriverName.GRID, new GridDriver());
         driverMap.put(DriverName.SAUCE, new SauceLabsDriver());
     }
